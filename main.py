@@ -1,16 +1,35 @@
-# This is a sample Python script.
+from book_manager import BookManager
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# user interface
+def user_interface(book_manager):
+    while True:
+        print("\nMenu:")
+        print("1. Add a new book")
+        print("2. Show all books")
+        print("3. Search a book by title")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            title = input("Enter the title of the book: ")
+            author = input("Enter the author of the book: ")
+            year = input("Enter the year of publication of the book: ")
+            if not year.isdigit():
+                print("Invalid input for year. Please enter a valid year.")
+                continue
+            book_manager.add_book(title, author, int(year))
+        elif choice == '2':
+            book_manager.show_all_books()
+        elif choice == '3':
+            title = input("Enter the title of the book you want to search: ")
+            book_manager.search_book_by_title(title)
+        elif choice == '4':
+            print("Exiting the program...")
+            break
+        else:
+            print("Invalid choice. Please enter a number from 1 to 4.")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+book_manager = BookManager()
+user_interface(book_manager)
